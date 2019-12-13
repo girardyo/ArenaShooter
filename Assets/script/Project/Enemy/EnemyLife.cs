@@ -15,10 +15,14 @@ public class EnemyLife : LifeScript
     [SerializeField]
     GameObject WeaponSpawn3;
     public Image LifeBar;
+    private bool lifebarbool=false;
+
+    public List<GameObject> EnemyList = new List<GameObject>();
+    GameObject g;
     // Start is called before the first frame update
     void Start()
     {
- 
+        g = GameObject.FindGameObjectWithTag("Respawn");
     }
 
     // Update is called once per frame
@@ -30,11 +34,24 @@ public class EnemyLife : LifeScript
     public override void Death()
     {
 
+
+        Destroy(LifeBar.gameObject.transform.parent.gameObject);
+        gameObject.tag = "Untagged";
+
+        EnemyList = g.GetComponent<EnemySpawnerScript>().GetListEnemy();
+        Debug.Log("Enemy Index "+EnemyList.IndexOf(gameObject));
+        EnemyList.Remove(gameObject);
+        Debug.Log("Count enemy" +EnemyList.Count);
+
+        g.GetComponent<EnemySpawnerScript>().SetListEnemy(EnemyList);
         GetComponent<BoxCollider>().enabled = false;
+        GetComponent<NavMeshAgent>().enabled = false;
+
+        Destroy(GetComponent<Rigidbody>());
 
         GetComponentInChildren<Animator>().SetTrigger("isDead");
         GetComponent<NavMeshAgent>().speed = 0;
-        Destroy(gameObject, 2);
+        //Destroy(gameObject, 2);
         if (Scoreadded == false)
         {
             GameObject g = GameObject.FindGameObjectWithTag("Score");
@@ -76,6 +93,11 @@ public class EnemyLife : LifeScript
     public override void UpdateLife(int nb)
     {
         base.UpdateLife(nb);
+        if (lifebarbool == false)
+        {
+            gameObject.transform.GetChild(0).GetComponent<Canvas>().enabled = true;
+            lifebarbool = true;
+        }
         //        LifeBar.transform.localScale = new Vector3((float)CurrentLife / (float)MaxLife, 1, 1);
         LifeBar.fillAmount = (float)CurrentLife / (float)MaxLife;
 

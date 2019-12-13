@@ -33,7 +33,7 @@ RectTransform:
   m_Children:
   - {fileID: 6039621462440730984}
   m_Father: {fileID: 5250550769328955501}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -47,7 +47,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1929959706466351780}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 2
   m_Camera: {fileID: 0}
@@ -259,6 +259,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8665326912528437774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5250550769226354690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffba5d432bb784add879fa0342a2b467, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damage: 1
+  g: {fileID: 5250550769328955502}
 --- !u!1 &5250550769328955502
 GameObject:
   m_ObjectHideFlags: 0
@@ -291,8 +305,8 @@ Transform:
   m_LocalPosition: {x: -0, y: 0.27, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 5250550770710719804}
   - {fileID: 3385701780095905168}
+  - {fileID: 5250550770710719804}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -306,7 +320,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.72
-  m_Speed: 2
+  m_Speed: 3.18
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -359,15 +373,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78d9a45566c7c4089b6eb6a7edc13eae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentLife: 10
-  MaxLife: 10
+  CurrentLife: 2
+  MaxLife: 2
   WeaponSpawn1: {fileID: 9046764347620278199, guid: 4f5134a5c3113478988c53a7c9fc054f,
     type: 3}
   WeaponSpawn2: {fileID: 6831311204739473346, guid: bca3a7397168347388f2eecaa9f1f0c4,
     type: 3}
-  WeaponSpawn3: {fileID: 5144893709978047319, guid: eba909ac49c334fab8138edf7d90cf8b,
+  WeaponSpawn3: {fileID: 1698056052845220, guid: 5a2bf64643e1fb0439ea39c0fc9b00ff,
     type: 3}
   LifeBar: {fileID: 6393764898927751320}
+  EnemyList: []
 --- !u!114 &9197463938132883493
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -409,7 +424,7 @@ Transform:
   m_Children:
   - {fileID: 5250550770729093946}
   m_Father: {fileID: 5250550769328955501}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5250550770729093950
 GameObject:
@@ -453,7 +468,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5250550770729093950}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 4300000, guid: a00abb210252f144f99c373de91b2877, type: 2}
 --- !u!23 &5250550770729093948
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -471,7 +486,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 1a57ca9d2133cd041b9e2961e51db7bc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -609,13 +624,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6500002, guid: 47377a9aa6b50294a865e21fe968af4d, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 6500002, guid: 47377a9aa6b50294a865e21fe968af4d, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 6463028095409794416, guid: 47377a9aa6b50294a865e21fe968af4d, type: 3}
+    - {fileID: 465235607095200210, guid: 47377a9aa6b50294a865e21fe968af4d, type: 3}
+    - {fileID: 6400000, guid: 47377a9aa6b50294a865e21fe968af4d, type: 3}
+    - {fileID: 6500000, guid: 47377a9aa6b50294a865e21fe968af4d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 47377a9aa6b50294a865e21fe968af4d, type: 3}
 --- !u!4 &5250550769226320934 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400006, guid: 47377a9aa6b50294a865e21fe968af4d,
+    type: 3}
+  m_PrefabInstance: {fileID: 5250550769226454688}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5250550769226354690 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100002, guid: 47377a9aa6b50294a865e21fe968af4d,
     type: 3}
   m_PrefabInstance: {fileID: 5250550769226454688}
   m_PrefabAsset: {fileID: 0}

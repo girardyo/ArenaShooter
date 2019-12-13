@@ -16,11 +16,11 @@ public class CreateQuads : MonoBehaviour
         mesh.name = "my mesh";
 
         Vector3[] vertices = new Vector3[Taille*Taille];
-        Vector3[] normals = new Vector3[Taille * Taille * 4];
-        int[] triangles = new int[Taille*Taille*6];
-        Vector2[] uvs = new Vector2[Taille*Taille*4];
+        Vector3[] normals = new Vector3[Taille * Taille];
+        int[] triangles = new int[(Taille-1)*(Taille-1)*6];
+        Vector2[] uvs = new Vector2[Taille*Taille];
 
-        int c = 0;
+        
         for (int i =0; i< Taille; i++)
         {
             for (int j = 0; j< Taille; j++)
@@ -35,24 +35,17 @@ public class CreateQuads : MonoBehaviour
             normals[i] = Vector3.forward;
         }
 
-
-
-        c = 0;
         for (int i = 0; i < Taille; i++)
         {
             for (int j = 0; j < Taille; j++)
             {
-                uvs[c] = new Vector2(0f, 0f);
-                uvs[c + 1] = new Vector2(1f, 0f);
-                uvs[c + 2] = new Vector2(0f, 1f);
-                uvs[c + 3] = new Vector2(1f, 1f);
+                uvs[i+j] = new Vector2(0f, 0f);
 
-                c += 4;
             }
         }
 
 
-        c = 0;
+        int c = 0;
         for (int i = 0; i < Taille-1; i++)
         {
             for (int j = 0; j < Taille-1; j++)

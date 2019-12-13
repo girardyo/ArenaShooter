@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/scene/Cours3FPS.unity
+    guid: 71d2bacd143b54d4ba5536da9678ce58
   m_configObjects: {}

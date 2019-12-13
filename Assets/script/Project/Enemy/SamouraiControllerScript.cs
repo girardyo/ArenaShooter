@@ -28,9 +28,17 @@ public class SamouraiControllerScript : MonoBehaviour
             float Speed = Vector3.Magnitude(GetComponent<NavMeshAgent>().velocity);
             GetComponentInChildren<Animator>().SetFloat("Speed", Speed);
 
-            if (GetComponent<NavMeshAgent>().remainingDistance < 2)
+            if (GetComponent<NavMeshAgent>().remainingDistance < 2 && GetComponent<NavMeshAgent>().remainingDistance > 0)
             {
+                float t = Time.deltaTime;
                 GetComponentInChildren<Animator>().SetTrigger("Attack");
+                GetComponent<BoxCollider>().enabled = true;
+                if (t > 1.2)
+                {
+                    GetComponent<BoxCollider>().enabled = false;
+
+                }
+
             }
 
             GotoTarget();

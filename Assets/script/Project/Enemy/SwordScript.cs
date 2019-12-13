@@ -5,14 +5,39 @@ using UnityEngine;
 public class SwordScript : MonoBehaviour
 {
    [SerializeField]
-   private int Damage;
-
-
-    private void OnCollisionEnter(Collision collision)
+    private int Damage;
+    [SerializeField]
+    private GameObject g;
+    private bool disableCollider=true;
+    private void Start()
     {
-        if(collision.gameObject.tag == "Player")
+    }
+
+    private void Update()
+    {
+        if (g.GetComponent<EnemyLife>().CurrentLife <= 0)
         {
-            collision.gameObject.GetComponent<LifeScript>().UpdateLife(-Damage);
+            if (disableCollider)
+            {
+                Debug.Log("VASE MORT");
+                Destroy(gameObject);
+                //GetComponent<BoxCollider>().enabled = false;
+                //gameObject.GetComponent<BoxCollider>().size = new Vector3(0, 0, 0);
+                disableCollider = false;
+            }
+
+        }
+
+
+    }
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "Player")
+        {
+            Debug.Log("DEGATS " + Damage);
+            other.gameObject.GetComponent<LifeScript>().UpdateLife(-Damage);
         }
     }
 }

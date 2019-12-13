@@ -11,6 +11,7 @@ TagManager:
   - EnemyWeapon
   - Score
   - Ammo
+  - EndScreen
   layers:
   - Default
   - TransparentFX
